@@ -1,6 +1,6 @@
 # 🚀 CPU Stats Monitor
 
-A set of Rust tools for monitoring CPU usage and system temperatures, designed to be used with i3blocks/i3status. Keep an eye on your system's performance with style! 😎
+A set of Rust tools for monitoring CPU usage and system temperatures, designed to be used with i3blocks/i3status.
 
 ## ✨ Features
 
@@ -12,9 +12,9 @@ A set of Rust tools for monitoring CPU usage and system temperatures, designed t
 
 ## 🛠️ Requirements
 
-- Rust (latest stable version) 🦀
-- `sensors` (for temperature monitoring) 🌡️
-- i3blocks or i3status (optional) 🖥️
+- Rust (latest stable version)
+- `sensors` (for temperature monitoring)
+- i3blocks or i3status (optional)
 
 ## 📦 Installation
 
