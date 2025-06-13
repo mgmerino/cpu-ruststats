@@ -1,73 +1,73 @@
-# CPU Stats Monitor
+# 🚀 CPU Stats Monitor
 
-Un conjunto de herramientas en Rust para monitorear el uso de CPU y temperaturas del sistema, diseñado para ser utilizado con i3blocks/i3status.
+A set of Rust tools for monitoring CPU usage and system temperatures, designed to be used with i3blocks/i3status. Keep an eye on your system's performance with style! 😎
 
-## Características
+## ✨ Features
 
-- **Monitor de CPU**: Muestra el uso de CPU en tiempo real con un gráfico ASCII (sparkline)
-- **Monitor de Temperatura**: Muestra la temperatura promedio de los sensores del sistema con un gráfico ASCII
-- Soporte para umbrales de advertencia y críticos
-- Historial de datos almacenado en `/tmp`
-- Integración con i3blocks/i3status
+- **CPU Monitor**: Displays real-time CPU usage with an ASCII sparkline 📊
+- **Temperature Monitor**: Shows the average temperature of system sensors with an ASCII sparkline 🌡️
+- Support for warning and critical thresholds ⚠️
+- Data history stored in `/tmp` 📁
+- Integration with i3blocks/i3status 🔄
 
-## Requisitos
+## 🛠️ Requirements
 
-- Rust (última versión estable)
-- `sensors` (para el monitor de temperatura)
-- i3blocks o i3status (opcional)
+- Rust (latest stable version) 🦀
+- `sensors` (for temperature monitoring) 🌡️
+- i3blocks or i3status (optional) 🖥️
 
-## Instalación
+## 📦 Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
-git clone https://github.com/tu-usuario/cpu-temp.git
+git clone https://github.com/your-username/cpu-temp.git
 cd cpu-temp
 ```
 
-2. Compila el proyecto:
+2. Build the project:
 ```bash
 cargo build --release
 ```
 
-## Uso
+## 🚀 Usage
 
-### Monitor de CPU
-
-```bash
-./target/release/cpu [opciones]
-```
-
-Opciones:
-- `-w, --warning <WARN>`: Umbral de advertencia en porcentaje (default: 70.0)
-- `-c, --critical <CRIT>`: Umbral crítico en porcentaje (default: 90.0)
-- `-n, --count <N>`: Longitud del sparkline (default: 20)
-
-### Monitor de Temperatura
+### CPU Monitor
 
 ```bash
-./target/release/temperature [opciones]
+./target/release/cpu [options]
 ```
 
-Opciones:
-- `-w, --warning <WARN>`: Umbral de advertencia en grados (default: 70.0)
-- `-c, --critical <CRIT>`: Umbral crítico en grados (default: 90.0)
-- `--chip <CHIP>`: Especificar el chip del sensor
-- `-n, --count <N>`: Longitud del sparkline (default: 5)
+Options:
+- `-w, --warning <WARN>`: Warning threshold in percentage (default: 70.0) ⚠️
+- `-c, --critical <CRIT>`: Critical threshold in percentage (default: 90.0) 🚨
+- `-n, --count <N>`: Sparkline length (default: 20) 📊
 
-## Configuración para i3blocks
+### Temperature Monitor
 
-Ejemplo de configuración para `~/.config/i3blocks/config`:
+```bash
+./target/release/temperature [options]
+```
+
+Options:
+- `-w, --warning <WARN>`: Warning threshold in degrees (default: 70.0) ⚠️
+- `-c, --critical <CRIT>`: Critical threshold in degrees (default: 90.0) 🚨
+- `--chip <CHIP>`: Specify the sensor chip 🔧
+- `-n, --count <N>`: Sparkline length (default: 5) 📊
+
+## 🖥️ i3blocks Configuration
+
+Example configuration for `~/.config/i3blocks/config`:
 
 ```ini
 [cpu]
-command=/ruta/a/cpu -n 20
+command=/path/to/cpu -n 20
 interval=1
 
 [temperature]
-command=/ruta/a/temperature --chip coretemp-isa-0000 -n 10
+command=/path/to/temperature --chip coretemp-isa-0000 -n 10
 interval=10
 ```
 
-## Licencia
+## 📄 License
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
+This project is licensed under the MIT License - see the LICENSE file for details. 🎉
