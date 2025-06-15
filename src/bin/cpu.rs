@@ -18,7 +18,7 @@ fn main() {
                 .short('w')
                 .long("warning")
                 .value_name("WARN")
-                .help("Umbral de advertencia en porcentaje")
+                .help("Warning threshold")
                 .value_parser(clap::value_parser!(f64))
                 .default_value("70.0"),
         )
@@ -27,7 +27,7 @@ fn main() {
                 .short('c')
                 .long("critical")
                 .value_name("CRIT")
-                .help("Umbral crítico en porcentaje")
+                .help("Critical threshold")
                 .value_parser(clap::value_parser!(f64))
                 .default_value("90.0"),
         )
@@ -36,7 +36,7 @@ fn main() {
                 .short('n')
                 .long("count")
                 .value_name("N")
-                .help("Longitud del sparkline")
+                .help("Sparkline length")
                 .value_parser(clap::value_parser!(usize))
                 .default_value("20"),
         )
@@ -54,7 +54,7 @@ fn main() {
     let (total0, idle0) = match read_proc_stat() {
         Some(data) => data,
         None => {
-            eprintln!("Error al leer /proc/stat");
+            eprintln!("Error reading /proc/stat");
             return;
         }
     };
@@ -66,7 +66,7 @@ fn main() {
     let (total1, idle1) = match read_proc_stat() {
         Some(data) => data,
         None => {
-            eprintln!("Error al leer /proc/stat");
+            eprintln!("Error reading /proc/stat");
             return;
         }
     };
@@ -151,7 +151,7 @@ mod tests {
     #[test]
     fn test_read_proc_stat() {
         // Create a temporary file with mock data
-        let temp_path = "/tmp/test_proc_stat";
+        let temp_path = "./test_proc_stat";
         let mut file = fs::File::create(temp_path).unwrap();
         writeln!(file, "cpu  10 20 30 40").unwrap();
         file.sync_all().unwrap();
@@ -170,7 +170,7 @@ mod tests {
     #[test]
     fn test_read_proc_stat_empty() {
         // Create an empty file
-        let temp_path = "/tmp/test_proc_stat_empty";
+        let temp_path = "./test_proc_stat_empty";
         fs::File::create(temp_path).unwrap();
 
         // Test reading the empty file
