@@ -109,7 +109,7 @@ fn main() {
         x if x < 75.0 => "",
         _ => "",
     };
-
+    // TODO: parameterize the output format in args
     //println!("{} {}°C", icon, avg as i32); // short_text
     println!("{} {:.1}°C {}", icon, avg, spark); // full_text + sparkline
 
