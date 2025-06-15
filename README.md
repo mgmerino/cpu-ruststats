@@ -1,6 +1,8 @@
 # 🚀 CPU Stats Monitor
+![Example of how this little binaries look like](example.png)
 
-A set of Rust binaries for monitoring CPU usage and system temperatures, designed to be used with i3blocks/i3status.
+A couple of Rust binaries for monitoring CPU usage and system temperatures, designed to be used with i3blocks/i3status.
+Disclaimer: this has been vibe coded. I have zero experience with Rust, don't be surprised by outrageous constructions and ideas.
 
 ## ✨ Features
 
