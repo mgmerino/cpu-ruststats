@@ -5,6 +5,7 @@ use cpu_ruststats::utils;
 use std::fs::{self};
 use std::io::{BufRead, BufReader};
 use std::time::Duration; // Import utils module
+use std::process::exit;
 
 const PROC_STAT_PATH: &str = "/proc/stat";
 const HISTORY_PATH: &str = "/tmp/cpu_usage_history.json";
@@ -30,6 +31,15 @@ fn main() {
                 .help("Critical threshold")
                 .value_parser(clap::value_parser!(f64))
                 .default_value("90.0"),
+        )
+        .arg(
+            clap::Arg::new("output")
+                .short('o')
+                .long("output")
+                .value_name("OUTPUT")
+                .help("Output format (text, text_and_sparkline)")
+                .value_parser(clap::value_parser!(String))
+                .default_value("text_and_sparkline"),
         )
         .arg(
             clap::Arg::new("count")
@@ -98,8 +108,14 @@ fn main() {
     let spark = utils::make_sparkline(&history);
 
     // print output
-    //println!("{}%", usage as u8);
-    println!("{:.1}% {}", usage, spark);
+    match matches.get_one::<String>("output").unwrap().as_str() {
+        "text" => println!("{}%", usage as u8),
+        "text_and_sparkline" => println!("{:.1}% {}", usage, spark),
+        _ => {
+            eprintln!("Invalid output format");
+            exit(1);
+        }
+    }
     if usage >= crit {
         {
             println!("#FF0000");

@@ -54,7 +54,16 @@ fn main() {
             Arg::new("chip")
                 .long("chip")
                 .value_name("CHIP")
-                .help("Sensor chip"),
+                .help("Sensor chip (e.g. coretemp-isa-0000)"),
+        )
+        .arg(
+            Arg::new("output")
+                .short('o')
+                .long("output")
+                .value_name("OUTPUT")
+                .help("Output format (text, text_and_sparkline)")
+                .value_parser(clap::value_parser!(String))
+                .default_value("text_and_sparkline"),
         )
         .arg(
             Arg::new("count")
@@ -109,9 +118,15 @@ fn main() {
         x if x < 75.0 => "",
         _ => "",
     };
-    // TODO: parameterize the output format in args
-    //println!("{} {}°C", icon, avg as i32); // short_text
-    println!("{} {:.1}°C {}", icon, avg, spark); // full_text + sparkline
+
+    match matches.get_one::<String>("output").unwrap().as_str() {
+        "text" => println!("{} {}°C", icon, avg as i32),
+        "text_and_sparkline" => println!("{} {:.1}°C {}", icon, avg, spark),
+        _ => {
+            eprintln!("Invalid output format");
+            exit(1);
+        }
+    }
 
     if avg >= crit {
         println!("#FF0000");
